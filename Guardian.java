@@ -47,12 +47,20 @@ public class Guardian extends Actor
     
     private void shoot()
     {
-        if (Greenfoot.mousePressed(null))
-        {
-            Fire fire = new Fire();
-            getWorld().addObject(fire, getX(), getY());
-            fire.setRotation(getRotation());
+        if("up".equals(Greenfoot.getKey())) {
+            Fire fire = new Fire(5);
+            //fire.turn(180);
+            getWorld().addObject(new Fire(), getX(), getY());
+        } else if("down".equals(Greenfoot.getKey())) {
+            Fire fire = new Fire(5);
+            fire.turn(90);
+            getWorld().addObject(new Fire(), getX(), getY());
         }
+        /*if("left".equals(Greenfoot.getKey())) {
+            getWorld().addObject(new Fire(-5), getX(), getY());
+        } else if("right".equals(Greenfoot.getKey())) {
+            getWorld().addObject(new Fire(5), getX(), getY());
+        }*/
     }
     
     private void handleMovement() 
@@ -72,22 +80,6 @@ public class Guardian extends Actor
             walkRightAnimation();
         }
     }
-    
-    /*private void handleFacing()
-    {
-        if(Greenfoot.getMouseInfo() != null ) {
-            turnTowards(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
-            if(getRotation() <= 225 && getRotation() >= 136) { // kiri
-                walkLeftAnimation();
-            } else if (getRotation() <= 315 && getRotation() >= 226) { // atas
-                backAnimation();
-            } else if (getRotation() <= 135 && getRotation() >= 46) { // bawah
-                idleAnimation();
-            } else { // kanan
-                walkRightAnimation();
-            }
-        }
-    }*/
     
     private void idleAnimation()
     {

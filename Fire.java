@@ -12,11 +12,20 @@ public class Fire extends Actor
     private GreenfootImage fire2 = new GreenfootImage("fire/fire2.png");
 
     private int frame = 0;
+    private int speed;
+    
+    Fire() {
+        this.speed = 5;
+    }
+    
+    Fire(int speed) {
+        this.speed = speed;
+    }
     
     public void act()
     {
         fireAnimation();
-        move(5);
+        move(speed);
         removeFire();
         frame++;
     }

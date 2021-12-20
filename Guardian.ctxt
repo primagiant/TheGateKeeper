@@ -9,7 +9,6 @@ comment3.params=
 comment3.target=void\ handleMovement()
 comment4.params=
 comment4.target=void\ idleAnimation()
-comment4.text=private\ void\ handleFacing()\r\n\ \ \ \ {\r\n\ \ \ \ \ \ \ \ if(Greenfoot.getMouseInfo()\ \!\=\ null\ )\ {\r\n\ \ \ \ \ \ \ \ \ \ \ \ turnTowards(Greenfoot.getMouseInfo().getX(),\ Greenfoot.getMouseInfo().getY());\r\n\ \ \ \ \ \ \ \ \ \ \ \ if(getRotation()\ <\=\ 225\ &&\ getRotation()\ >\=\ 136)\ {\ //\ kiri\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ walkLeftAnimation();\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\ else\ if\ (getRotation()\ <\=\ 315\ &&\ getRotation()\ >\=\ 226)\ {\ //\ atas\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ backAnimation();\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\ else\ if\ (getRotation()\ <\=\ 135\ &&\ getRotation()\ >\=\ 46)\ {\ //\ bawah\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ idleAnimation();\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\ else\ {\ //\ kanan\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ walkRightAnimation();\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ }\r\n}
 comment5.params=
 comment5.target=void\ backAnimation()
 comment6.params=
