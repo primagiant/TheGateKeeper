@@ -39,28 +39,31 @@ public class Guardian extends Actor
     
     public void act()
     {
+        String key = Greenfoot.getKey();
+        
         getImage().scale(30, 30);
         handleMovement();
-        shoot();
+        
+        shoot(key);
         frame++;
     }
     
-    private void shoot()
+    private void shoot(String key)
     {
-        if("up".equals(Greenfoot.getKey())) {
+        if("up".equals(key)) {
             Fire fire = new Fire(5);
-            //fire.turn(180);
-            getWorld().addObject(new Fire(), getX(), getY());
-        } else if("down".equals(Greenfoot.getKey())) {
+            fire.turn(-90);
+            getWorld().addObject(fire, getX(), getY());
+        }else if("down".equals(key)) {
             Fire fire = new Fire(5);
             fire.turn(90);
-            getWorld().addObject(new Fire(), getX(), getY());
+            getWorld().addObject(fire, getX(), getY());
         }
-        /*if("left".equals(Greenfoot.getKey())) {
+        if("left".equals(key)) {
             getWorld().addObject(new Fire(-5), getX(), getY());
-        } else if("right".equals(Greenfoot.getKey())) {
+        } else if("right".equals(key)) {
             getWorld().addObject(new Fire(5), getX(), getY());
-        }*/
+        }
     }
     
     private void handleMovement() 

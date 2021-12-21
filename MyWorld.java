@@ -18,6 +18,7 @@ public class MyWorld extends World
     {    
         super(600, 600, 1); 
         prepare();
+        wallSetup();
     }
     
     private void prepare() 
@@ -28,7 +29,7 @@ public class MyWorld extends World
     
     public void act() 
     {
-        //spawnEnemy();
+        spawnEnemy();
         frame++;
     }
     
@@ -44,5 +45,28 @@ public class MyWorld extends World
                 case 3 : addObject(new FireHead(), getWidth()/2, getHeight());break;
             }   
         }
+    }
+    
+    private void wallSetup()
+    {
+          for (int i = 10; i < getHeight()/2-40; i+=20){
+               addObject(new Wall(), 10, i);  
+               addObject(new Wall(), getWidth()-10, i);
+          }
+          
+          for (int i = getHeight()-10; i > getHeight()/2+40; i-=20){
+               addObject(new Wall(), 10, i); 
+               addObject(new Wall(), getWidth()-10, i);  
+          }
+          
+          for (int i = 40; i < getWidth()/2-30; i+=30){
+               addObject(new Wall(), i, 10); 
+               addObject(new Wall(), i, getHeight()-10); 
+          }
+          
+          for (int i = getWidth()-40; i > getWidth()/2+30; i-=30){
+               addObject(new Wall(), i, 10); 
+               addObject(new Wall(), i, getHeight()-10); 
+          }
     }
 }

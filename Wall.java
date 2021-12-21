@@ -8,12 +8,27 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Wall extends Actor
 {
-    /**
-     * Act - do whatever the Wall wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    private GreenfootImage[] wall = {
+        new GreenfootImage("wall/wall1.png"),
+        new GreenfootImage("wall/wall2.png"),
+    };
+    private int frame = 0;
+   
+    private void wallAnimation()
+    {
+        if(frame % 16 == 0) {
+            this.setImage(wall[0]);
+        }else if(frame % 16 == 9) {
+            this.setImage(wall[1]);
+        }
+    }
+
     public void act()
     {
-        // Add your action code here.
+        wallAnimation();
+        getImage().scale(30, 30);
+        frame++;
     }
 }
+    
+
