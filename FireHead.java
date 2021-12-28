@@ -14,17 +14,12 @@ public class FireHead extends Enemy
     private GreenfootImage fh4 = new GreenfootImage("firehead/fh4.png");
     private int frame = 0;
     
-    public FireHead() 
-    {
-        super(2, 1);    
-    }
-    
     public void act()
     {
         super.enemyDead(this);
         super.moveToGuardian();
         moveToGuardian();
-        getImage().scale(30,30);
+        getImage().scale(22,22);
         idleAnimation();
         frame++;
     }

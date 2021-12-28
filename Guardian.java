@@ -42,7 +42,7 @@ public class Guardian extends Actor
     {
         String key = Greenfoot.getKey();
         
-        getImage().scale(30, 30);
+        getImage().scale(22, 22);
         handleMovement();
         
         shoot(key);

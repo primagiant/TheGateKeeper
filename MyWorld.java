@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     private int frame = 0;
-    private int spawnSpeed = 80; // semakin kecil angkanya semakin cepat spawn enemynya
+    private int spawnSpeed = 180; // semakin kecil angkanya semakin cepat spawn enemynya
     public int randomSpawnPosition;
     
     public static Guardian guardian = new Guardian();
@@ -35,7 +35,7 @@ public class MyWorld extends World
     
     private void spawnEnemy()
     {
-        if(frame % spawnSpeed == 0){
+        if(frame % spawnSpeed == 80){
             randomSpawnPosition = Greenfoot.getRandomNumber(4);
             switch(randomSpawnPosition)
             {
@@ -44,6 +44,24 @@ public class MyWorld extends World
                 case 2 : addObject(new FireHead(), getWidth()/2, 0);break;
                 case 3 : addObject(new FireHead(), getWidth()/2, getHeight());break;
             }   
+        }else if(frame % spawnSpeed == 0){
+            randomSpawnPosition = Greenfoot.getRandomNumber(4);
+            switch(randomSpawnPosition)
+            {
+                case 0 : addObject(new Skeleton(), 0, getHeight()/2);break;
+                case 1 : addObject(new Skeleton(), getWidth(), getHeight()/2);break;
+                case 2 : addObject(new Skeleton(), getWidth()/2, 0);break;
+                case 3 : addObject(new Skeleton(), getWidth()/2, getHeight());break;
+            }
+        }else if(frame % spawnSpeed == 40){
+            randomSpawnPosition = Greenfoot.getRandomNumber(4);
+            switch(randomSpawnPosition)
+            {
+                case 0 : addObject(new Vampire(), 0, 0); break;
+                case 1 : addObject(new Vampire(), getWidth(), 0);break;
+                case 2 : addObject(new Vampire(), 0, getHeight()); break;
+                case 3 : addObject(new Vampire(), getWidth(), getHeight());break;
+            }
         }
     }
     

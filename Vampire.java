@@ -14,10 +14,15 @@ public class Vampire extends Enemy
     private GreenfootImage v4 = new GreenfootImage("vampire/vampire_v2_4.png");
     private int frame = 0;
     
+    public Vampire(){
+        super(3, 1);
+    }
+    
     public void act()
     {
         super.act();
-        getImage().scale(30,30);
+        super.enemyDead(this);
+        getImage().scale(22,22);
         idleAnimation();
         frame++;
     }
