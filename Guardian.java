@@ -36,6 +36,7 @@ public class Guardian extends Actor
     
     private int frame = 0;
     public int movementSpeed = 2;
+    public int health = 10;
     
     public void act()
     {
