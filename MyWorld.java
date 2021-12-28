@@ -18,13 +18,19 @@ public class MyWorld extends World
     {    
         super(600, 600, 1); 
         prepare();
-        wallSetup();
     }
     
     private void prepare() 
-    {
+    {   
         addObject(guardian, 300, 350);
         addObject(new Portal(), getWidth()/2, getHeight()/2);
+
+        wallSetup();
+
+        Counter counter = new Counter("Health : ");
+        addObject(counter,51,573);
+        Counter counter2 = new Counter("Score : ");
+        addObject(counter2,51,24);
     }
     
     public void act() 

@@ -46,6 +46,7 @@ public class Guardian extends Actor
         handleMovement();
         
         shoot(key);
+        dead();
         frame++;
     }
     
@@ -130,6 +131,18 @@ public class Guardian extends Actor
             this.setImage(guardianLeft[2]);
         }else if(frame % 24 == 23) {
             this.setImage(guardianLeft[3]);
+        }
+    }
+    
+    private void dead(){
+        Actor enemy = getOneIntersectingObject(Enemy.class);
+        if(enemy != null) {
+            health--;
+            getWorld().removeObject(enemy);
+        }
+        
+        if(health == 0) {
+            
         }
     }
 }
