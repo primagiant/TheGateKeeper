@@ -32,7 +32,7 @@ public class Enemy extends Actor
         turnTowards(getWorld().getWidth()/2, getWorld().getHeight()/2);
     }
     
-    public void enemyDead(Enemy enemyClass)
+    public void enemyDead(Enemy enemyClass, int inputScore)
     {
         Actor fire = getOneIntersectingObject(Fire.class);
         if(fire != null) {
@@ -41,6 +41,7 @@ public class Enemy extends Actor
         }
         
         if(health == 0) {
+            //getWorld().score += inputScore;
             getWorld().removeObject(enemyClass);
         }
     }

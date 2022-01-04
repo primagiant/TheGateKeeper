@@ -16,7 +16,7 @@ public class FireHead extends Enemy
     
     public void act()
     {
-        super.enemyDead(this);
+        super.enemyDead(this, 2);
         super.moveToGuardian();
         moveToGuardian();
         getImage().scale(22,22);

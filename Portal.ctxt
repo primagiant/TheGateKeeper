@@ -7,4 +7,6 @@ comment2.params=
 comment2.target=void\ portalAnimation()
 comment3.params=
 comment3.target=void\ enemyEnter()
-numComments=4
+comment4.params=
+comment4.target=void\ portalDestroy()
+numComments=5

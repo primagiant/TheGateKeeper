@@ -16,6 +16,7 @@ public class Portal extends Actor
     };
     
     private int frame = 0;
+    public int maxEnemyEntry = 0;
     
     public void act()
     {
@@ -41,5 +42,11 @@ public class Portal extends Actor
     public void enemyEnter()
     {
         removeTouching(Enemy.class);
+    }
+    
+    public void portalDestroy() {
+        if(maxEnemyEntry == 0) {
+            Greenfoot.stop();
+        }
     }
 }
