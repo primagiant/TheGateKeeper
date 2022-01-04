@@ -44,13 +44,13 @@ public class Skeleton extends Enemy
     }
     
     private void animation(){
-        if (this.getRotation()>=316 && this.getRotation()<=45){
+        if (this.getRotation() >= 316 || this.getRotation() <= 45){
             rightAnimation();
-        }else if(this.getRotation()>=46 && this.getRotation()<=135){
+        }else if(this.getRotation() >= 46 && this.getRotation() <= 135){
             upAnimation();
-        }else if(this.getRotation()>=136 && this.getRotation()<=225){
+        }else if(this.getRotation() >= 136 && this.getRotation() <= 225){
             leftAnimation();
-        }else if(this.getRotation()>=226 && this.getRotation()<=315){
+        }else if(this.getRotation() >= 226 && this.getRotation() <= 315){
             downAnimation();
         }
     }
