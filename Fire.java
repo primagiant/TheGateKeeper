@@ -30,6 +30,10 @@ public class Fire extends Actor
         frame++;
     }
     
+    public void turnToMouse() {
+        turnTowards(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
+    }
+    
     private void fireAnimation()
     {
         if(frame % 8 == 0) {

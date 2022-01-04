@@ -1,5 +1,4 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
 /**
  * Write a description of class Guardian here.
  * 
@@ -35,8 +34,13 @@ public class Guardian extends Actor
     };
     
     private int frame = 0;
-    public int movementSpeed = 2;
-    public int health = 10;
+    public int movementSpeed;
+    public int health;
+    
+    public Guardian() {
+        this.movementSpeed = 2;
+        this.health = 2;
+    }
     
     public void act()
     {
@@ -45,26 +49,17 @@ public class Guardian extends Actor
         getImage().scale(22, 22);
         handleMovement();
         
-        shoot(key);
+        shoot();
+        getHit();
         dead();
         frame++;
     }
     
-    private void shoot(String key)
-    {
-        if("up".equals(key)) {
+    private void shoot(){
+        if(Greenfoot.mousePressed(null)) {
             Fire fire = new Fire(5);
-            fire.turn(-90);
             getWorld().addObject(fire, getX(), getY());
-        }else if("down".equals(key)) {
-            Fire fire = new Fire(5);
-            fire.turn(90);
-            getWorld().addObject(fire, getX(), getY());
-        }
-        if("left".equals(key)) {
-            getWorld().addObject(new Fire(-5), getX(), getY());
-        } else if("right".equals(key)) {
-            getWorld().addObject(new Fire(5), getX(), getY());
+            fire.turnTowards(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
         }
     }
     
@@ -72,18 +67,40 @@ public class Guardian extends Actor
     {
         if(Greenfoot.isKeyDown("W")) {
             setLocation(getX(), getY()-movementSpeed);
+            if(checkWall() || checkPortal()) {
+                setLocation(getX(), getY()+movementSpeed);
+            }
             backAnimation();
         } else if(Greenfoot.isKeyDown("S")) {
             setLocation(getX(), getY()+movementSpeed);
+            if(checkWall() || checkPortal()) {
+                setLocation(getX(), getY()-movementSpeed);
+            }
             idleAnimation();
         }
         if(Greenfoot.isKeyDown("A")) {
             setLocation(getX()-movementSpeed, getY());
+            if(checkWall() || checkPortal()) {
+                setLocation(getX()+movementSpeed, getY());
+            }
             walkLeftAnimation();
         } else if(Greenfoot.isKeyDown("D")) {
             setLocation(getX()+movementSpeed, getY());
+            if(checkWall() || checkPortal()) {
+                setLocation(getX()-movementSpeed, getY());
+            }
             walkRightAnimation();
         }
+    }
+    
+    private boolean checkWall() {
+        if(isTouching(Wall.class))return true ;
+        else return false;
+    }
+    
+    private boolean checkPortal() {
+        if(isTouching(Portal.class))return true ;
+        else return false;
     }
     
     private void idleAnimation()
@@ -134,15 +151,18 @@ public class Guardian extends Actor
         }
     }
     
-    private void dead(){
+    public void getHit() {
         Actor enemy = getOneIntersectingObject(Enemy.class);
         if(enemy != null) {
             health--;
             getWorld().removeObject(enemy);
         }
-        
+    }
+    
+    private void dead(){
         if(health == 0) {
-            
+            getWorld().addObject(new GameOver(), 300, 300);
+            Greenfoot.stop();
         }
     }
 }

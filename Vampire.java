@@ -21,7 +21,7 @@ public class Vampire extends Enemy
     public void act()
     {
         super.act();
-        super.enemyDead(this);
+        super.enemyDead(this, 5);
         getImage().scale(22,22);
         idleAnimation();
         frame++;

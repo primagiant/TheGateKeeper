@@ -12,7 +12,10 @@ public class MyWorld extends World
     private int spawnSpeed = 180; // semakin kecil angkanya semakin cepat spawn enemynya
     public int randomSpawnPosition;
     
-    public static Guardian guardian = new Guardian();
+    public static Guardian guardian;
+    public int score;
+    private Counter healthCounter = new Counter("Health : ");
+    private Counter scoreCounter = new Counter("Score : ");
     
     public MyWorld()
     {    
@@ -22,19 +25,23 @@ public class MyWorld extends World
     
     private void prepare() 
     {   
+        guardian = new Guardian();
         addObject(guardian, 300, 350);
         addObject(new Portal(), getWidth()/2, getHeight()/2);
 
         wallSetup();
-
-        Counter counter = new Counter("Health : ");
-        addObject(counter,51,573);
-        Counter counter2 = new Counter("Score : ");
-        addObject(counter2,51,24);
+        addObject(healthCounter,51,573);
+        addObject(scoreCounter,51,24);
+        Counter counter3 = new Counter("Max Enemy Entry : ");
+        addObject(counter3,490,24);
+        
+        score = 0;
     }
     
     public void act() 
     {
+        healthCounter.setValue(guardian.health);
+        scoreCounter.setValue(score);
         spawnEnemy();
         frame++;
     }
@@ -73,24 +80,25 @@ public class MyWorld extends World
     
     private void wallSetup()
     {
-          for (int i = 10; i < getHeight()/2-40; i+=20){
-               addObject(new Wall(), 10, i);  
-               addObject(new Wall(), getWidth()-10, i);
-          }
+        // 
+        for (int i = 10; i < getHeight()/2-40; i+=20){
+            addObject(new Wall(), 10, i);  
+            addObject(new Wall(), getWidth()-10, i);
+        }
           
-          for (int i = getHeight()-10; i > getHeight()/2+40; i-=20){
-               addObject(new Wall(), 10, i); 
-               addObject(new Wall(), getWidth()-10, i);  
-          }
+        for (int i = getHeight()/2+40-10; i < getHeight() ; i+=20){
+            addObject(new Wall(), 10, i); 
+            addObject(new Wall(), getWidth()-10, i);  
+        }
           
-          for (int i = 40; i < getWidth()/2-30; i+=30){
-               addObject(new Wall(), i, 10); 
-               addObject(new Wall(), i, getHeight()-10); 
-          }
+        for (int i = 40; i < getWidth()/2-30; i+=30){
+            addObject(new Wall(), i, 10); 
+            addObject(new Wall(), i, getHeight()-10); 
+        }
           
-          for (int i = getWidth()-40; i > getWidth()/2+30; i-=30){
-               addObject(new Wall(), i, 10); 
-               addObject(new Wall(), i, getHeight()-10); 
-          }
+        for (int i = getWidth()-40; i > getWidth()/2+30; i-=30){
+            addObject(new Wall(), i, 10); 
+            addObject(new Wall(), i, getHeight()-10); 
+        }
     }
 }

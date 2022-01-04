@@ -16,8 +16,8 @@ public class Skeleton extends Enemy
     
     public void act()
     {
-        super.act();
-        super.enemyDead(this);
+        super.moveToTheMiddle();
+        super.enemyDead(this, 3);
         getImage().scale(22, 22);
         idleAnimation();
         frame++;
