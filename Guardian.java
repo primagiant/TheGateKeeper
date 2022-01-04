@@ -39,7 +39,7 @@ public class Guardian extends Actor
     
     public Guardian() {
         this.movementSpeed = 2;
-        this.health = 2;
+        this.health = 100;
     }
     
     public void act()
