@@ -12,7 +12,7 @@ public class Fire extends Actor
     private GreenfootImage fire2 = new GreenfootImage("fire/fire2.png");
 
     private int frame = 0;
-    private int speed;
+    protected int speed;
     
     Fire() {
         this.speed = 5;
@@ -30,11 +30,7 @@ public class Fire extends Actor
         frame++;
     }
     
-    public void turnToMouse() {
-        turnTowards(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
-    }
-    
-    private void fireAnimation()
+    protected void fireAnimation()
     {
         if(frame % 8 == 0) {
             setImage(fire1);
@@ -43,9 +39,9 @@ public class Fire extends Actor
         }
     }
     
-    private void removeFire()
+    protected void removeFire()
     {
-        if(isAtEdge()) {
+        if(isAtEdge() || isTouching(Wall.class)) {
             getWorld().removeObject(this);
         }
     }

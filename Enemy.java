@@ -21,19 +21,16 @@ public class Enemy extends Actor
         speed = inputSpeed;
     }
     
-    public void act()
-    {
-        moveToTheMiddle();
+    public void act() {
+        moveToTheMiddle();;
     }
     
-    public void moveToTheMiddle()
-    {
+    public void moveToTheMiddle() {
         move(speed);
         turnTowards(getWorld().getWidth()/2, getWorld().getHeight()/2);
     }
     
-    public void enemyDead(Enemy enemyClass, int inputScore)
-    {
+    public void enemyDead(Enemy enemyClass, int inputScore) {
         Actor fire = getOneIntersectingObject(Fire.class);
         if(fire != null) {
             health--;
@@ -41,13 +38,12 @@ public class Enemy extends Actor
         }
         
         if(health == 0) {
-            //getWorld().score += inputScore;
+            MyWorld.score += inputScore;
             getWorld().removeObject(enemyClass);
         }
     }
     
-    public void moveToGuardian()
-    {
+    public void moveToGuardian() {
         move(speed);
         turnTowards(MyWorld.guardian.getX(), MyWorld.guardian.getY());
     }

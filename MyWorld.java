@@ -13,9 +13,11 @@ public class MyWorld extends World
     public int randomSpawnPosition;
     
     public static Guardian guardian;
-    public int score;
+    public static Portal portal;
+    public static int score;
     private Counter healthCounter = new Counter("Health : ");
     private Counter scoreCounter = new Counter("Score : ");
+    private Counter maxEnemyEntryCounter = new Counter("Max Enemy Entry : ");
     
     public MyWorld()
     {    
@@ -26,22 +28,23 @@ public class MyWorld extends World
     private void prepare() 
     {   
         guardian = new Guardian();
+        portal = new Portal();
         addObject(guardian, 300, 350);
-        addObject(new Portal(), getWidth()/2, getHeight()/2);
+        addObject(portal, getWidth()/2, getHeight()/2);
 
         wallSetup();
-        addObject(healthCounter,51,573);
-        addObject(scoreCounter,51,24);
-        Counter counter3 = new Counter("Max Enemy Entry : ");
-        addObject(counter3,490,24);
+        addObject(healthCounter,65,573);
+        addObject(scoreCounter,65,24);
+        addObject(maxEnemyEntryCounter,480,24);
         
         score = 0;
     }
     
     public void act() 
     {
-        healthCounter.setValue(guardian.health);
-        scoreCounter.setValue(score);
+        healthCounter.setValue(neverBeNegative(guardian.health));
+        scoreCounter.setValue(neverBeNegative(score));
+        maxEnemyEntryCounter.setValue(neverBeNegative(portal.maxEnemyEntry));
         spawnEnemy();
         frame++;
     }
@@ -68,12 +71,13 @@ public class MyWorld extends World
             }
         }else if(frame % spawnSpeed == 40){
             randomSpawnPosition = Greenfoot.getRandomNumber(4);
+            int plusPixelSpawn = 45;
             switch(randomSpawnPosition)
             {
-                case 0 : addObject(new Vampire(), 0, 0); break;
-                case 1 : addObject(new Vampire(), getWidth(), 0);break;
-                case 2 : addObject(new Vampire(), 0, getHeight()); break;
-                case 3 : addObject(new Vampire(), getWidth(), getHeight());break;
+                case 0 : addObject(new Vampire(), plusPixelSpawn, plusPixelSpawn); break;
+                case 1 : addObject(new Vampire(), getWidth()-plusPixelSpawn, plusPixelSpawn);break;
+                case 2 : addObject(new Vampire(), plusPixelSpawn, getHeight()-plusPixelSpawn); break;
+                case 3 : addObject(new Vampire(), getWidth()-plusPixelSpawn, getHeight()-plusPixelSpawn);break;
             }
         }
     }
@@ -100,5 +104,13 @@ public class MyWorld extends World
             addObject(new Wall(), i, 10); 
             addObject(new Wall(), i, getHeight()-10); 
         }
+    }
+    
+    private int neverBeNegative(int val) 
+    {
+        if(val < 0) {
+            val = 0;
+        }
+        return val;
     }
 }
