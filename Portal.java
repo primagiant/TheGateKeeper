@@ -16,7 +16,7 @@ public class Portal extends Actor
     };
     
     private int frame = 0;
-    public int maxEnemyEntry = 0;
+    public int maxEnemyEntry = 25;
     
     public void act()
     {
@@ -41,11 +41,17 @@ public class Portal extends Actor
     
     public void enemyEnter()
     {
-        removeTouching(Enemy.class);
+        Actor enemy = getOneIntersectingObject(Enemy.class);
+        if(enemy != null) {
+            removeTouching(Enemy.class);
+            maxEnemyEntry--;
+        }
+        portalDestroy();
     }
     
     public void portalDestroy() {
         if(maxEnemyEntry == 0) {
+            getWorld().addObject(new GameOver(), 300, 300);
             Greenfoot.stop();
         }
     }

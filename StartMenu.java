@@ -8,14 +8,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class StartMenu extends World
 {
-
-    /**
-     * Constructor for objects of class StartMenu.
-     * 
-     */
+    Guardian guardian = new Guardian();
+    StartText startText = new StartText();
     public StartMenu()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(600, 600, 1); 
+        prepare(); 
+    }
+    
+    public void prepare() {
+        addObject(guardian,300,400);
+        addObject(startText,300,300);
+    }
+    
+    public void act()
+    {
+        guardian.getImage().scale(100,100);
+        if(Greenfoot.isKeyDown("enter")) {
+            Greenfoot.setWorld(new MyWorld());
+        }
     }
 }

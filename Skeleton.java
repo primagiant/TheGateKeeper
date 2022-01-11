@@ -33,6 +33,7 @@ public class Skeleton extends Enemy
         new GreenfootImage("skeleton/sl4.png"),
     };
     private int frame = 0;
+    private int StopTime = 0;
     
     public void act()
     {
@@ -108,6 +109,15 @@ public class Skeleton extends Enemy
         }else if(frame == 30) {
             this.setImage(skeletonLeft[3]);
             frame = 0;
+        }
+    }
+    
+    private void stopWalkAndShoot()
+    {
+        int RandomTimeShoot = Greenfoot.getRandomNumber(3);
+        switch(RandomTimeShoot)
+        {
+            case 1: 
         }
     }
 }

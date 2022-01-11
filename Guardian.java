@@ -34,12 +34,14 @@ public class Guardian extends Actor
     };
     
     private int frame = 0;
+    private int GameOverSceneTime = -1;
+    
     public int movementSpeed;
     public int health;
     
     public Guardian() {
         this.movementSpeed = 2;
-        this.health = 100;
+        this.health = 10;
     }
     
     public void act()
@@ -57,7 +59,7 @@ public class Guardian extends Actor
     
     private void shoot(){
         if(Greenfoot.mousePressed(null)) {
-            Fire fire = new Fire(5);
+            Fire fire = new GuardianFire(5);
             getWorld().addObject(fire, getX(), getY());
             fire.turnTowards(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
         }
@@ -160,9 +162,14 @@ public class Guardian extends Actor
     }
     
     private void dead(){
-        if(health == 0) {
-            getWorld().addObject(new GameOver(), 300, 300);
-            Greenfoot.stop();
+        if(health <= 0) {
+            movementSpeed = 0;
+            if(GameOverSceneTime == 180) {
+                Greenfoot.stop();
+            } else if (GameOverSceneTime == 0) {
+                getWorld().addObject(new GameOver(), 300, 300);
+            }
+            GameOverSceneTime++;
         }
     }
 }
