@@ -38,6 +38,10 @@ public class Enemy extends Actor
         }
         
         if(health == 0) {
+            /*int healthPotionRandomSpawn = Greenfoot.getRandomNumber(100);
+            if(healthPotionRandomSpawn == -1000); {
+                getWorld().addObject(new HealthPotion(), getX(), getY());
+            }*/
             MyWorld.score += inputScore;
             getWorld().removeObject(enemyClass);
         }
