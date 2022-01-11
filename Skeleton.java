@@ -33,15 +33,35 @@ public class Skeleton extends Enemy
         new GreenfootImage("skeleton/sl4.png"),
     };
     private int frame = 0;
-    private int StopTime = 0;
+    private int stopTime = 0;
+    private int actualSpeed;
     
     public void act()
     {
         super.moveToTheMiddle();
         super.enemyDead(this, 3);
         getImage().scale(22, 22);
+        stopWalkAndShoot();
         animation();
         frame++;
+    }
+    
+    private void stopWalkAndShoot()
+    {
+        if(this.speed != 0) {
+            actualSpeed = this.speed;
+        }
+        
+        if(stopTime == 60) {
+            this.speed = 0;
+            Fire enemyFire = new EnemyFire(5);
+            getWorld().addObject(enemyFire, getX(), getY());
+            enemyFire.turnTowards(MyWorld.guardian.getX(), MyWorld.guardian.getY());
+        } else if(stopTime == 120) {
+            this.speed = actualSpeed;
+            stopTime = 0;
+        }
+        stopTime++;
     }
     
     private void animation(){
@@ -109,15 +129,6 @@ public class Skeleton extends Enemy
         }else if(frame == 30) {
             this.setImage(skeletonLeft[3]);
             frame = 0;
-        }
-    }
-    
-    private void stopWalkAndShoot()
-    {
-        int RandomTimeShoot = Greenfoot.getRandomNumber(3);
-        switch(RandomTimeShoot)
-        {
-            case 1: 
         }
     }
 }

@@ -9,19 +9,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     private int frame = 0;
-    private int spawnSpeed = 180; // semakin kecil angkanya semakin cepat spawn enemynya
     public int randomSpawnPosition;
     
     public static Guardian guardian;
     public static Portal portal;
     public static int score;
+    public static GreenfootSound backgroundMusic = new GreenfootSound("backround_music.mp3");
+    
     private Counter healthCounter = new Counter("Health : ");
     private Counter scoreCounter = new Counter("Score : ");
     private Counter maxEnemyEntryCounter = new Counter("Max Enemy Entry : ");
     
     public MyWorld()
     {    
-        super(600, 600, 1); 
+        super(600, 600, 1);
+        backgroundMusic.playLoop();
         prepare();
     }
     
@@ -45,13 +47,13 @@ public class MyWorld extends World
         healthCounter.setValue(neverBeNegative(guardian.health));
         scoreCounter.setValue(neverBeNegative(score));
         maxEnemyEntryCounter.setValue(neverBeNegative(portal.maxEnemyEntry));
+        guardian.getImage().scale(22, 22);
         spawnEnemy();
-        frame++;
     }
     
     private void spawnEnemy()
     {
-        if(frame % spawnSpeed == 80){
+        if(frame == 0){
             randomSpawnPosition = Greenfoot.getRandomNumber(4);
             switch(randomSpawnPosition)
             {
@@ -60,7 +62,7 @@ public class MyWorld extends World
                 case 2 : addObject(new FireHead(), getWidth()/2, 0);break;
                 case 3 : addObject(new FireHead(), getWidth()/2, getHeight());break;
             }   
-        }else if(frame % spawnSpeed == 0){
+        }else if(frame == 90){
             randomSpawnPosition = Greenfoot.getRandomNumber(4);
             switch(randomSpawnPosition)
             {
@@ -69,7 +71,7 @@ public class MyWorld extends World
                 case 2 : addObject(new Skeleton(), getWidth()/2, 0);break;
                 case 3 : addObject(new Skeleton(), getWidth()/2, getHeight());break;
             }
-        }else if(frame % spawnSpeed == 40){
+        }else if(frame == 150){
             randomSpawnPosition = Greenfoot.getRandomNumber(4);
             int plusPixelSpawn = 45;
             switch(randomSpawnPosition)
@@ -79,7 +81,9 @@ public class MyWorld extends World
                 case 2 : addObject(new Vampire(), plusPixelSpawn, getHeight()-plusPixelSpawn); break;
                 case 3 : addObject(new Vampire(), getWidth()-plusPixelSpawn, getHeight()-plusPixelSpawn);break;
             }
+            frame=-1;
         }
+        frame++;
     }
     
     private void wallSetup()

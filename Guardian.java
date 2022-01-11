@@ -34,7 +34,6 @@ public class Guardian extends Actor
     };
     
     private int frame = 0;
-    private int GameOverSceneTime = -1;
     
     public int movementSpeed;
     public int health;
@@ -46,11 +45,7 @@ public class Guardian extends Actor
     
     public void act()
     {
-        String key = Greenfoot.getKey();
-        
-        getImage().scale(22, 22);
         handleMovement();
-        
         shoot();
         getHit();
         dead();
@@ -163,13 +158,8 @@ public class Guardian extends Actor
     
     private void dead(){
         if(health <= 0) {
-            movementSpeed = 0;
-            if(GameOverSceneTime == 180) {
-                Greenfoot.stop();
-            } else if (GameOverSceneTime == 0) {
-                getWorld().addObject(new GameOver(), 300, 300);
-            }
-            GameOverSceneTime++;
+            MyWorld.backgroundMusic.stop();
+            Greenfoot.setWorld(new GameOverWorld());
         }
     }
 }

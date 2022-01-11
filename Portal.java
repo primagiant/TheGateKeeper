@@ -16,7 +16,7 @@ public class Portal extends Actor
     };
     
     private int frame = 0;
-    public int maxEnemyEntry = 25;
+    public int maxEnemyEntry = 10;
     
     public void act()
     {
@@ -51,8 +51,8 @@ public class Portal extends Actor
     
     public void portalDestroy() {
         if(maxEnemyEntry == 0) {
-            getWorld().addObject(new GameOver(), 300, 300);
-            Greenfoot.stop();
+            MyWorld.backgroundMusic.stop();
+            Greenfoot.setWorld(new GameOverWorld());
         }
     }
 }

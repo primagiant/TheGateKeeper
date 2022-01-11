@@ -7,4 +7,6 @@ comment2.params=speed
 comment2.target=EnemyFire(int)
 comment3.params=
 comment3.target=void\ act()
-numComments=4
+comment4.params=
+comment4.target=void\ collisionWithOther()
+numComments=5

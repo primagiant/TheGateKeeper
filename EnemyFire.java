@@ -20,6 +20,20 @@ public class EnemyFire extends Fire
     
     public void act()
     {
-        // Add your action code here.
+        super.act();
+        collisionWithOther();
+    }
+    
+    public void collisionWithOther() 
+    {
+        if(isTouching(Guardian.class)) {
+            MyWorld.guardian.health--;
+            getWorld().removeObject(this);
+        } else if(isTouching(GuardianFire.class)) {
+            removeTouching(GuardianFire.class);
+            getWorld().removeObject(this);
+        }else {
+            super.removeFire();
+        }
     }
 }

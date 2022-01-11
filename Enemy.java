@@ -31,7 +31,7 @@ public class Enemy extends Actor
     }
     
     public void enemyDead(Enemy enemyClass, int inputScore) {
-        Actor fire = getOneIntersectingObject(Fire.class);
+        Actor fire = getOneIntersectingObject(GuardianFire.class);
         if(fire != null) {
             health--;
             getWorld().removeObject(fire);

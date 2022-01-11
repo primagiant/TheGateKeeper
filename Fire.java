@@ -8,9 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Fire extends Actor
 {
-    private GreenfootImage fire1 = new GreenfootImage("fire/fire.png");
-    private GreenfootImage fire2 = new GreenfootImage("fire/fire2.png");
-
     private int frame = 0;
     protected int speed;
     
@@ -24,19 +21,8 @@ public class Fire extends Actor
     
     public void act()
     {
-        fireAnimation();
         move(speed);
-        removeFire();
         frame++;
-    }
-    
-    protected void fireAnimation()
-    {
-        if(frame % 8 == 0) {
-            setImage(fire1);
-        } else if (frame % 8 == 4) {
-            setImage(fire2);
-        }
     }
     
     protected void removeFire()

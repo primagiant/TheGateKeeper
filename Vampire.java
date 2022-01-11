@@ -35,7 +35,7 @@ public class Vampire extends Enemy
     private int frame = 0;
     
     public Vampire(){
-        super(3, 1);
+        super(2, 1);
     }
     
     public void act()
